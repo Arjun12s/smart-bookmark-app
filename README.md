@@ -1,20 +1,4 @@
-Perfect — that is just the default Next.js template README.
 
-You should completely replace it with your project-specific README.
-Right now it does not describe your app at all.
-
-✅ What You Should Do
-1️⃣ Open README.md
-
-Delete everything inside it.
-
-Yes — remove the entire default template.
-
-2️⃣ Paste This Instead (Final Clean Version)
-
-Below is your complete, submission-ready README.md.
-
-Copy everything from here ↓ and paste into your file.
 
 Smart Bookmark App
 
