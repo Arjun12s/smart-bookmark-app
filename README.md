@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Perfect — that is just the default Next.js template README.
 
-## Getting Started
+You should completely replace it with your project-specific README.
+Right now it does not describe your app at all.
 
-First, run the development server:
+✅ What You Should Do
+1️⃣ Open README.md
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Delete everything inside it.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Yes — remove the entire default template.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2️⃣ Paste This Instead (Final Clean Version)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Below is your complete, submission-ready README.md.
 
-## Learn More
+Copy everything from here ↓ and paste into your file.
 
-To learn more about Next.js, take a look at the following resources:
+Smart Bookmark App
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Live Application:
+https://smart-bookmark-app-digr.vercel.app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Overview
 
-## Deploy on Vercel
+Smart Bookmark App is a full-stack web application that allows users to securely save and manage personal bookmarks using Google authentication.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Each user can:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Sign in using Google OAuth
+
+Add bookmarks with a title and URL
+
+View only their own bookmarks
+
+Delete their own bookmarks
+
+See updates reflected in real-time across multiple tabs
+
+The application is deployed on Vercel and uses Supabase for authentication, database, and real-time functionality.
+
+Tech Stack
+
+Next.js (App Router)
+
+Supabase (Authentication, PostgreSQL, Realtime)
+
+Google OAuth
+
+Tailwind CSS
+
+Vercel (Deployment)
+
+Features
+Google Authentication
+
+Users authenticate using Google OAuth. No email/password authentication is implemented.
+
+Private Bookmarks
+
+Each user can only access their own bookmarks. Data isolation is enforced at the database level using Row Level Security (RLS).
+
+Add & Delete Bookmarks
+
+Authenticated users can:
+
+Add a bookmark (title + URL)
+
+Delete their own bookmarks
+
+Real-Time Updates
+
+If the app is open in multiple tabs:
+
+Adding a bookmark in one tab instantly updates the other.
+
+Deleting a bookmark also syncs immediately.
+
+Problems I Faced & How I Solved Them
+
+1. Designing Secure Multi-User Data Isolation
+
+One of the first challenges was ensuring users could not see each other's bookmarks. Relying only on frontend filtering is insecure.
+
+I implemented database-level Row Level Security to enforce ownership rules. This guarantees users can only access their own data.
+
+2. Preventing Unauthorized Deletion
+
+I needed to ensure users could not delete bookmarks belonging to others. This was solved by enforcing ownership validation at the database layer rather than trusting the frontend.
+
+3. Implementing Real-Time Updates
+
+The requirement specified instant updates across tabs. Initially, the UI required manual refresh.
+
+I enabled Supabase Realtime and subscribed to database change events so updates appear immediately without reloading.
+
+4. Realtime Configuration Issues
+
+Real-time updates did not work at first because replication was not enabled for the bookmarks table.
+
+After enabling replication and verifying configuration, cross-tab synchronization worked correctly.
+
+5. Managing Authentication State
+
+Handling authentication state in the Next.js App Router required careful session management. I implemented session retrieval on load and listened for auth state changes to ensure consistent UI behavior.
+
+6. Environment Variables in Production
+
+The app worked locally but failed in production because environment variables were not configured in Vercel.
+
+After adding the required Supabase variables in the Vercel dashboard and redeploying, the issue was resolved.
+
+7. OAuth Working Locally but Failing in Production
+
+Google OAuth worked on localhost but failed after deployment.
+
+The issue was that the production URL was not registered in Supabase authentication settings. After updating the Site URL and authorized redirect URLs, authentication worked correctly in both environments.
